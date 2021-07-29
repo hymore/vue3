@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="app"></div>
+
+    <script type="module">
+      import { effect, reactive, ref, toRefs, toRef } from "/dist/umd/vue.js";
+      const state = reactive({
+        name: "zs",
+        age: 10,
+        obj: {
+          test: "dddd",
+        },
+      });
+      const refs = toRefs(state);
+      console.log(refs);
+      // const state = reactive([1, 2, 3]);
+      // const state = ref({ test: "test" });
+      effect(() => {
+        app.innerHTML = refs.name.value;
+      });
+      setTimeout(() => {
+        refs.name.value = 100;
+      }, 2000);
+    </script>
+  </body>
+</html>
